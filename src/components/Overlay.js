@@ -37,6 +37,7 @@ function Overlay() {
           placeholder="Name of the deceased"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          required
         />
         <div className="dates">
           <label for="born-date-input">
