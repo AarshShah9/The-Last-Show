@@ -1,10 +1,13 @@
-import React from "react";
+import { React, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Overlay from "./components/Overlay";
 import Table from "./components/Table";
 import "./App.css";
 
 function App() {
+  CREATE_OBITUARY_URL = "";
+  GET_OBITUARIES_URL = "";
+
   const [overlay, setOverlay] = React.useState(false);
   const [obituaries, setObituaries] = React.useState([]);
 
@@ -17,9 +20,29 @@ function App() {
     // setObituaries()
   };
 
+  useEffect(() => {
+    getObituaries();
+  }, []);
+
   const addObituary = (obituary) => {
-    // fetch()
-    // setObituaries()
+    const formData = new FormData();
+    formData.append("file", obituary.file);
+    formData.append("name", obituary.name);
+    formData.append("born", obituary.born);
+    formData.append("died", obituary.died);
+
+    fetch(CREATE_OBITUARY_URL, {
+      method: "POST",
+      body: formData,
+    })
+      .then((response) => {
+        if (response.ok) {
+          getObituaries();
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (

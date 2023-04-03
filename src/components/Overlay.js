@@ -9,8 +9,19 @@ function Overlay({ addObituary, toggleObituaryOverlay }) {
   const [born, setBorn] = useState("");
   const [died, setDied] = useState("");
 
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+
+    addObituary({
+      name: name,
+      file: file,
+      born: born,
+      died: died,
+    }
+    );    
+
   return (
-    <form className="form">
+    <form className="form" onClick={handleFormSubmit}>
       <p className="x-out" onClick={toggleObituaryOverlay}>
         &#10006;
       </p>
@@ -65,20 +76,7 @@ function Overlay({ addObituary, toggleObituaryOverlay }) {
             }}
           />
         </div>
-
-        <input
-          type="submit"
-          value="Write Obituary"
-          className="form-submit"
-          onSubmit={() =>
-            addObituary({
-              name: name,
-              file: file,
-              born: born,
-              died: died,
-            })
-          }
-        />
+        <input type="submit" value="Write Obituary" className="form-submit" />
       </div>
     </form>
   );
