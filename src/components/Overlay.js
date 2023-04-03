@@ -6,8 +6,8 @@ import { useState } from "react";
 function Overlay() {
   const [name, setName] = useState("");
   const [fileName, setFileName] = useState("");
-  const [born, setBorn] = useState(null);
-  const [died, setDied] = useState(null);
+  const [born, setBorn] = useState("");
+  const [died, setDied] = useState("");
 
   return (
     <form className="form">
@@ -43,11 +43,25 @@ function Overlay() {
           <label for="born-date-input">
             <i>Born:</i>
           </label>
-          <input className="born-date-input" type="datetime-local" />
+          <input
+            className="born-date-input"
+            type="datetime-local"
+            value={born}
+            onChange={(e) => {
+              setBorn(e.target.value);
+            }}
+          />
           <label for="died-date-input">
             <i>Died:</i>
           </label>
-          <input className="died-date-input" type="datetime-local" />
+          <input
+            className="died-date-input"
+            type="datetime-local"
+            value={died}
+            onChange={(e) => {
+              setDied(e.target.value);
+            }}
+          />
         </div>
 
         <input type="submit" value="Write Obituary" className="form-submit" />
