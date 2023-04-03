@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+
 .card {
   max-width: 300px;
   display: flex;
@@ -32,4 +34,11 @@
 .date {
   padding-top: 5px;
   padding-bottom: 10px;
+}
+
+.bio {
+  font-family: "Satisfy", cursive;
+  text-align: center;
+  padding: 0 10px;
+  font-size: 1.2rem;
 }

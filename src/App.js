@@ -16,8 +16,11 @@ function App() {
         name="Aarsh"
         born="November 9, 2003"
         died="Present"
-        bio="Lived a great life"
+        bio="Lorem ipsum dolor sit amet. Et galisum provident et voluptas nisi aut perferendis reprehenderit. 
+        Ut delectus exercitationem ex reiciendis sapiente aut temporibus inventore. 
+        Et perferendis assumenda ex reprehenderit rerum id voluptatem quisquam."
       />
+
       {/* <Overlay /> */}
     </>
   );
