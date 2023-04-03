@@ -10,19 +10,21 @@ function AbituaryCard({ imageSrc, audioSrc, name, born, died, bio }) {
   };
 
   return (
-    <div className="card" onClick={toggleCard}>
-      <img className="card-image" src={imageSrc} alt={name + " image"} />
-      <p className="card-name">{name}</p>
-      <p className="date">
-        {born} - {died}
-      </p>
-      {/* update below to have transition */}
-      <p className="bio">{cardOpen ? bio : null}</p>
-      {cardOpen ? (
-        <audio controls>
-          <source src={audioSrc} type="audio/mpeg" />
-        </audio>
-      ) : null}
+    <div className="card-wrapper">
+      <div className="card" onClick={toggleCard}>
+        <img className="card-image" src={imageSrc} alt={name + " image"} />
+        <p className="card-name">{name}</p>
+        <p className="date">
+          {born} - {died}
+        </p>
+        {/* update below to have transition */}
+        <p className="bio">{cardOpen ? bio : null}</p>
+        {cardOpen ? (
+          <audio controls>
+            <source src={audioSrc} type="audio/mpeg" />
+          </audio>
+        ) : null}
+      </div>
     </div>
   );
 }

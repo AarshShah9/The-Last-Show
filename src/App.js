@@ -13,7 +13,7 @@ function App() {
 
   return (
     <div class="container">
-      <div class="box">
+      <div class={!overlay ? "box" : "box box-disabled"}>
         <Navbar toggleObituaryOverlay={toggleObituaryOverlay} />
         <Table />
       </div>
