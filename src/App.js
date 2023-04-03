@@ -6,20 +6,34 @@ import "./App.css";
 
 function App() {
   const [overlay, setOverlay] = React.useState(false);
+  const [obituaries, setObituaries] = React.useState([]);
 
   const toggleObituaryOverlay = () => {
     setOverlay(!overlay);
+  };
+
+  const getObituaries = () => {
+    // fetch()
+    // setObituaries()
+  };
+
+  const addObituary = (obituary) => {
+    // fetch()
+    // setObituaries()
   };
 
   return (
     <div className="container">
       <div className={!overlay ? "box" : "box box-disabled"}>
         <Navbar toggleObituaryOverlay={toggleObituaryOverlay} />
-        <Table />
+        <Table obituaries={obituaries} />
       </div>
       <div className="box overlay">
         {overlay ? (
-          <Overlay toggleObituaryOverlay={toggleObituaryOverlay} />
+          <Overlay
+            addObituary={addObituary}
+            toggleObituaryOverlay={toggleObituaryOverlay}
+          />
         ) : null}
       </div>
     </div>
