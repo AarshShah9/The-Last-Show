@@ -3,7 +3,7 @@ import "../components/Overlay.css";
 
 import { useState } from "react";
 
-function Overlay() {
+function Overlay({ toggleObituaryOverlay }) {
   const [name, setName] = useState("");
   const [fileName, setFileName] = useState("");
   const [born, setBorn] = useState("");
@@ -11,7 +11,9 @@ function Overlay() {
 
   return (
     <form className="form">
-      <p className="x-out">&#10006;</p>
+      <p className="x-out" onClick={toggleObituaryOverlay}>
+        &#10006;
+      </p>
       <div className="main-form-container">
         <h2>Create a New Obituary</h2>
         <img src="ripicon.png" alt="flower" className="flower-image"></img>

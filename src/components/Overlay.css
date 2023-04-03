@@ -1,8 +1,8 @@
 .form {
   display: flex;
   flex-direction: column;
-  /* background-color: transparent;
-  opacity: 0.9; */
+  /* background-color: transparent; */
+  opacity: 1;
 }
 
 .main-form-container {

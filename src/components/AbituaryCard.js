@@ -11,7 +11,7 @@ function AbituaryCard({ imageSrc, audioSrc, name, born, died, bio }) {
 
   return (
     <div className="card" onClick={toggleCard}>
-      <img className="card-image" src={imageSrc} />
+      <img className="card-image" src={imageSrc} alt={name + " image"} />
       <p className="card-name">{name}</p>
       <p className="date">
         {born} - {died}

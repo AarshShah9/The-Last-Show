@@ -1,7 +1,7 @@
 import React from "react";
 import "../components/Navbar.css";
 
-function Navbar(props) {
+function Navbar({ toggleObituaryOverlay }) {
   return (
     <nav>
       <div className="spacer"></div>
@@ -11,7 +11,9 @@ function Navbar(props) {
       </div>
 
       <div className="wrapper">
-        <div className="add-obituary">+ New Obituary</div>
+        <div className="add-obituary" onClick={toggleObituaryOverlay}>
+          + New Obituary
+        </div>
       </div>
     </nav>
   );
