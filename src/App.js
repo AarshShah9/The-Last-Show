@@ -12,12 +12,12 @@ function App() {
   };
 
   return (
-    <div class="container">
-      <div class={!overlay ? "box" : "box box-disabled"}>
+    <div className="container">
+      <div className={!overlay ? "box" : "box box-disabled"}>
         <Navbar toggleObituaryOverlay={toggleObituaryOverlay} />
         <Table />
       </div>
-      <div class="box overlay">
+      <div className="box overlay">
         {overlay ? (
           <Overlay toggleObituaryOverlay={toggleObituaryOverlay} />
         ) : null}
