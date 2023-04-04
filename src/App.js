@@ -20,9 +20,9 @@ function App() {
     // setObituaries()
   };
 
-  useEffect(() => {
-    getObituaries();
-  }, []);
+  // useEffect(() => {
+  //   getObituaries();
+  // }, []);
 
   const addObituary = (obituary) => {
     const formData = new FormData();
