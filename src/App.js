@@ -1,4 +1,4 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import Overlay from "./components/Overlay";
 import Table from "./components/Table";
@@ -8,8 +8,8 @@ function App() {
   let CREATE_OBITUARY_URL = "";
   let GET_OBITUARIES_URL = "";
 
-  const [overlay, setOverlay] = React.useState(false);
-  const [obituaries, setObituaries] = React.useState([]);
+  const [overlay, setOverlay] = useState(false);
+  const [obituaries, setObituaries] = useState([]);
 
   const toggleObituaryOverlay = () => {
     setOverlay(!overlay);
