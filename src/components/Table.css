@@ -1,0 +1,21 @@
+.table-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.table {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  /* justify-content: start; */
+  /* align-items: center; */
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}

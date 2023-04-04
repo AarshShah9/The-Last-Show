@@ -1,0 +1,88 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  /* background-color: transparent; */
+  opacity: 1;
+}
+
+.main-form-container {
+  padding: 20px;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+}
+
+.form-submit {
+  background-color: #30ccac;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  height: 45px;
+  width: 500px;
+}
+
+.form-submit:hover {
+  background-color: #403c3c;
+  color: white;
+  cursor: pointer;
+}
+
+.x-out {
+  display: flex;
+  justify-content: right;
+  color: #818181;
+  font-size: 35px;
+  padding: 10px;
+}
+
+.x-out:hover {
+  color: #403c3c;
+  cursor: pointer;
+}
+
+.name-input-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 35px;
+  width: 500px;
+  border: #afafaf solid 1px;
+  border-radius: 3px;
+  margin-bottom: 15px;
+  margin-top: 15px;
+}
+
+.name-input-box:active {
+  border-color: #30ccac;
+}
+
+.main-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flower-image {
+  height: 200px;
+  width: 200px;
+}
+
+.dates {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 500px;
+  margin-bottom: 15px;
+}
+
+#file-upload {
+  display: none;
+}
+
+.file-upload-label:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
