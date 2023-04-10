@@ -15,6 +15,7 @@ def create_obituary_handler(event, context):
         name = obituary_data['name']
         born_year = obituary_data['born']
         died_year = obituary_data['died']
+        id = obituary_data['id']
 
         # not sure if this is the right way to get the image file and set it up for cloudinary
         image_file = obituary_data['file']
