@@ -1,5 +1,6 @@
 import React from "react";
 import "../components/Overlay.css";
+import { v4 as uuidv4 } from "uuid";
 
 import { useState } from "react";
 
@@ -13,6 +14,7 @@ function Overlay({ addObituary, toggleObituaryOverlay }) {
     e.preventDefault();
 
     addObituary({
+      id: uuidv4(),
       name: name,
       file: file,
       born: born,
