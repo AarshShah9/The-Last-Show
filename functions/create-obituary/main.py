@@ -6,11 +6,13 @@ import boto3
 
 def create_obituary_handler(event, context):
     try:
-        OPENAI_API_KEY = ""
+        OPENAI_API_KEY = boto3.resource('ssm').get_parameter(
+            Name='/thelastshow/openai_api_key', WithDecryption=True)['Parameter']['Value']
         CLOUDNAME = "duoghyw7n"
         CLOUDAPIKEY = "942673461688855"
-        CLOUDINARYSECRET = ""
-
+        CLOUDINARYSECRET = boto3.resource('ssm').get_parameter(
+            Name='/thelastshow/cloudinary_secret', WithDecryption=True)['Parameter']['Value']
+        
         obituary_data = json.loads(event['body'])
         name = obituary_data['name']
         born_year = obituary_data['born']
