@@ -79,17 +79,3 @@ def create_obituary_handler(event, context):
 
     except Exception as e:
         return {'statusCode': 401, 'body': json.dumps(f'Error: {str(e)}'), 'event': event}
-
-
-event = {
-    'body': {
-        'name': 'John Doe',
-        'born': 'Jan 12, 1990',
-        'died': 'Jan 12, 2021',
-    }
-}
-event = json.dumps(event)
-context = {}
-
-
-print(create_obituary_handler(event, context))
