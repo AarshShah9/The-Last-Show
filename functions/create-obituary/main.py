@@ -65,7 +65,6 @@ def create_obituary_handler(event, context):
             raise Exception(
                 f"Image upload failed: {cloudinary_img_response.json()}")
 
-        # TODO WILL HERE IS THE ID OF THE IMAGE
         cloudinary_img_id = cloudinary_img_response.json().get("public_id")
 
         # Code to store audio file on cloudinary
@@ -94,7 +93,15 @@ def create_obituary_handler(event, context):
         table = dynamodb_resource.Table("thelastshow-30158991")
         # should store obituary bio response here
         dynamodb_response = table.put_item(
-            Item={}
+            Item={
+                'id': id,
+                'name': name,
+                'born': born_year,
+                'died': died_year,
+                'obituary': obituary_body,
+                'image': cloudinary_img_id,
+                'audio': cloudinary_audio_id
+            }
         )
 
 # _____________________________________________________________________________________________________
