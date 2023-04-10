@@ -69,33 +69,13 @@ resource "aws_iam_policy" "dynamodb" {
   "Version": "2012-10-17",
   "Statement": [
     {
-      "Sid": "ListAndDescribe",
-      "Effect": "Allow",
-      "Action": [
-          "dynamodb:List*",
-          "dynamodb:DescribeReservedCapacity*",
-          "dynamodb:DescribeLimits",
-          "dynamodb:DescribeTimeToLive"
-      ],
-      "Resource": "*"
-    },
-    {
       "Sid": "SpecificTable",
       "Effect": "Allow",
       "Action": [
-          "dynamodb:BatchGet*",
-          "dynamodb:DescribeStream",
-          "dynamodb:DescribeTable",
-          "dynamodb:Get*",
           "dynamodb:Query",
-          "dynamodb:Scan",
-          "dynamodb:BatchWrite*",
-          "dynamodb:CreateTable",
-          "dynamodb:Delete*",
-          "dynamodb:Update*",
           "dynamodb:PutItem"
         ],
-        "Resource": "arn:aws:dynamodb:*:*:table/lotion-30158991"
+        "Resource": "arn:aws:dynamodb:*:*:table/thelastshow-30158991"
     }
   ]
 }
@@ -133,7 +113,7 @@ resource "aws_lambda_function" "create-obituary-30150079" {
 
 # # read the docs: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table
 
-resource "aws_dynamodb_table" "lotion-30158991" {
+resource "aws_dynamodb_table" "thelastshow-30158991" {
   name         = "thelastshow-30158991"
   billing_mode = "PROVISIONED"
 
@@ -144,15 +124,10 @@ resource "aws_dynamodb_table" "lotion-30158991" {
   write_capacity = 1
 
 
-  hash_key  = "email"
-  range_key = "id"
+  hash_key = "id"
 
 
   # the hash_key data type is string 
-  attribute {
-    name = "email"
-    type = "S"
-  }
   attribute {
     name = "id"
     type = "S"
