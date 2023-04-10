@@ -34,12 +34,19 @@ def create_obituary_handler(event, context):
         }
         obituary_bio_response = requests.post(
             'https://api.openai.com/v1/chat/completions', headers=openai_headers, data=json.dumps(openai_payload))
+        
+        obituary_body = obituary_bio_response.json().get("choices")[0].get("message").get("content")
 
 # _____________________________________________________________________________________________________
-        # TODO Code to call amazon polly API
-
-        # TODO Set up audio file for cloudinary
-        audio_file = None
+        # Code to call amazon polly API
+        polly = boto3.resource('polly')
+        polly_res = polly.synthesize_speech(
+            Text=obituary_body,
+            OutputFormat='mp3',
+            VoiceId='Joanna'
+        )
+        # Set up audio file for cloudinary
+        audio_file = polly_res.json().get("AudioStream")
 # _____________________________________________________________________________________________________
         # Code to store image file on cloudinary
 
