@@ -72,7 +72,7 @@ resource "aws_iam_policy" "dynamodb" {
       "Sid": "SpecificTable",
       "Effect": "Allow",
       "Action": [
-          "dynamodb:Query",
+          "dynamodb:Scan",
           "dynamodb:PutItem"
         ],
         "Resource": "arn:aws:dynamodb:*:*:table/thelastshow-30158991"
