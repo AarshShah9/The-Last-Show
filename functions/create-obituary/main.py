@@ -6,6 +6,7 @@ import boto3
 
 def create_obituary_handler(event, context):
     try:
+        # TODO Populate this from aws parameter store
         OPENAI_API_KEY = ""
         CLOUDNAME = "duoghyw7n"
         CLOUDAPIKEY = "942673461688855"
