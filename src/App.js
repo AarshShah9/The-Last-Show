@@ -26,7 +26,7 @@ function App() {
 
   const addObituary = (obituary) => {
     const formData = new FormData();
-    formData.appebd("id", obituary.id);
+    formData.append("id", obituary.id);
     formData.append("file", obituary.file);
     formData.append("name", obituary.name);
     formData.append("born", obituary.born);
