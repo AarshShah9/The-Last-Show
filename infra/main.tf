@@ -43,7 +43,7 @@ resource "aws_s3_bucket" "lambda" {}
 # to the service so it can interact with other AWS services
 # see the docs: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role
 resource "aws_iam_role" "lambda" {
-  name               = "iam-for-lambda-functions"
+  name               = "iam-for-obituary-lambda-functions"
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -62,7 +62,7 @@ EOF
 }
 
 resource "aws_iam_policy" "dynamodb" {
-  name = "dynamodb-policy"
+  name = "obituary-dynamodb-policy"
 
   policy = <<EOF
 {
@@ -87,6 +87,29 @@ resource "aws_iam_role_policy_attachment" "dynamoaccess" {
   policy_arn = aws_iam_policy.dynamodb.arn
 }
 
+# read the docs: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table
+
+resource "aws_dynamodb_table" "thelastshow-30158991" {
+  name         = "thelastshow-30158991"
+  billing_mode = "PROVISIONED"
+
+  # up to 8KB read per second (eventually consistent)
+  read_capacity = 1
+
+  # up to 1KB per second
+  write_capacity = 1
+
+
+  hash_key = "id"
+
+
+  # the hash_key data type is string 
+  attribute {
+    name = "id"
+    type = "S"
+  }
+
+}
 
 # create a Lambda function
 # see the docs: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function
@@ -111,29 +134,7 @@ resource "aws_lambda_function" "create-obituary-30150079" {
   runtime = "python3.9"
 }
 
-# # read the docs: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table
 
-resource "aws_dynamodb_table" "thelastshow-30158991" {
-  name         = "thelastshow-30158991"
-  billing_mode = "PROVISIONED"
-
-  # up to 8KB read per second (eventually consistent)
-  read_capacity = 1
-
-  # up to 1KB per second
-  write_capacity = 1
-
-
-  hash_key = "id"
-
-
-  # the hash_key data type is string 
-  attribute {
-    name = "id"
-    type = "S"
-  }
-
-}
 
 
 # create a Function URL for Lambda 
