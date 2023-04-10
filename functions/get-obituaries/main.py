@@ -4,8 +4,12 @@ import json
 
 def get_obituaries_handler(event, context):
     try:
-
-        dynamodb = boto3.resource("dynamodb")
+        CLOUDINARY_SECRET = boto3.resource('ssm').get_parameter(
+            Name='/thelastshow/cloudinary_secret', WithDecryption=True)['Parameter']['Value']
+        CLOUDINARY_API_KEY = "942673461688855"
+        CLOUDINARY_NAME = "duoghyw7n"
+        
+        dynamodb = boto3.theresource("dynamodb")
         table = dynamodb.Table("thelastshow-30158991")
 
         response = table.scan()
