@@ -15,8 +15,9 @@ def create_obituary_handler(event, context):
         name = obituary_data['name']
         born_year = obituary_data['born']
         died_year = obituary_data['died']
+        id = obituary_data['id']
 
-        # not sure if this is the right way to get the image file and set it up for cloudinary
+        # TODO not sure if this is the right way to get the image file and set it up for cloudinary
         image_file = obituary_data['file']
 # _____________________________________________________________________________________________________
         # Code to call OpenAI API
@@ -33,14 +34,30 @@ def create_obituary_handler(event, context):
             'https://api.openai.com/v1/chat/completions', headers=openai_headers, data=json.dumps(openai_payload))
 
 # _____________________________________________________________________________________________________
-        # Code to call amazon polly API
+        # TODO Code to call amazon polly API
 
-        polly_audio_response = None
+        # TODO Set up audio file for cloudinary
+        audio_file = None
 # _____________________________________________________________________________________________________
         # Code to store image file on cloudinary
 
         cloudinary_img_response = requests.post(
-            f"https://api.cloudinary.com/v1_1/{CLOUDNAME}/image/upload", {'file': image_file, 'api_key': CLOUDAPIKEY}, {'Content-Type': 'multipart/form-data'})
+            f"https://api.cloudinary.com/v1_1/{CLOUDNAME}/image/upload",
+            data={
+                "api_key": CLOUDAPIKEY,
+                "api_secret": CLOUDINARYSECRET,
+                "upload_preset": "obituary"
+
+            },
+            files={"file": image_file}
+        )
+
+        if cloudinary_img_response.status_code != 200:
+            raise Exception(
+                f"Image upload failed: {cloudinary_img_response.json()}")
+
+        # TODO WILL HERE IS THE ID OF THE IMAGE
+        cloudinary_img_id = cloudinary_img_response.json().get("public_id")
 
         # Code to store audio file on cloudinary
 
@@ -49,12 +66,20 @@ def create_obituary_handler(event, context):
             data={
                 "api_key": CLOUDAPIKEY,
                 "api_secret": CLOUDINARYSECRET,
-                "resource_type": "video"
+                "resource_type": "video",
+                "upload_preset": "obituary"
             },
-            files={"file": polly_audio_response}
+            files={"file": audio_file}
         )
 
-# _____________________________________________________________________________________________________
+        if cloudinary_audio_response.status_code != 200:
+            raise Exception(
+                f"Audio upload failed: {cloudinary_audio_response.json()}")
+
+        # TODO WILL HERE IS THE ID OF THE AUDIO
+        cloudinary_audio_id = cloudinary_audio_response.json().get("public_id")
+
+# _____________________________________________________ ________________________________________________
         # Code to save obituary to DynamoDB
         dynamodb_resource = boto3.resource('dynamodb')
         table = dynamodb_resource.Table("thelastshow-30158991")
@@ -64,11 +89,12 @@ def create_obituary_handler(event, context):
         )
 
 # _____________________________________________________________________________________________________
-        # Code to setup response
+        # Code to setup response (mainly for testing purposes)
         response = {
-            'dynamodb_response': dynamodb_response,
-            'openai_response': obituary_bio_response,
-            'cloudinary_img_response': cloudinary_img_response,
+            'dynamodb_response': dynamodb_response.json(),
+            'openai_response': obituary_bio_response.json(),
+            'cloudinary_img_response': cloudinary_img_response.json(),
+            'cloudinary_audio_response': cloudinary_audio_response.json(),
         }
 
         return {
