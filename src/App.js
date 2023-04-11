@@ -18,20 +18,24 @@ function App() {
   const getObituaries = () => {
     fetch(GET_OBITUARIES_URL)
       .then((res) => {
-        console.log(res)
+        return res.json();
+      })
+      .then((data) => {
         let obitArr = [];
-        for (let i = 0; i < res.length; i++) {
+        for (let i = 0; i < data.length; i++) {
           const obituary = {
-            id: res[i].id,
-            name: res[i].name,
-            born: res[i].born,
-            died: res[i].died,
-            audioID: res[i].audio,
-            imageID: res[i].image,
+            id: data[i].id,
+            name: data[i].name,
+            born: data[i].born,
+            died: data[i].died,
+            bio: data[i].obituary,
+            audioID: data[i].audio,
+            imageID: data[i].image,
           }
           obitArr.push(obituary);
         }
         setObituaries(obitArr);
+        console.log(data);
       })
       .catch((error) => {
         console.log(error);
