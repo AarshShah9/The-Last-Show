@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./AbituaryCard.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
@@ -8,8 +8,7 @@ function AbituaryCard({ imageId, audioId, name, born, died, bio }) {
   const [cardOpen, setCardOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const CLOUDNAME = "duoghyw7n";
-  const words = name;
-  const wordsArray = words.split(" ");
+  const wordsArray = name.split(" ");
   const firstName = wordsArray[0][0].toUpperCase() + wordsArray[0].slice(1);
   const lastName = wordsArray[1][0].toUpperCase() + wordsArray[1].slice(1);
 
@@ -21,6 +20,13 @@ function AbituaryCard({ imageId, audioId, name, born, died, bio }) {
   let audio = new Audio(
     `https://res.cloudinary.com/${CLOUDNAME}/video/upload/${audioId}`
   );
+
+  useEffect(() => {
+    if (isPlaying) {
+      audio.pause();
+      setIsPlaying(false);
+    }
+  }, [cardOpen]);
 
   const handlePlay = () => {
     if (!isPlaying) {

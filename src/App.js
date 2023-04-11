@@ -69,7 +69,6 @@ function App() {
       body: JSON.stringify(data),
     })
       .then((response) => {
-        console.log(response);
         if (response.ok) {
           getObituaries();
           toggleObituaryOverlay();
