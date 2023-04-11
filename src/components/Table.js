@@ -10,8 +10,8 @@ function Table({ obituaries }) {
           return (
             <AbituaryCard
               className="card"
-              imageSrc={obituary.imageSrc}
-              audioSrc={obituary.audioSrc}
+              imageId={obituary.imageId}
+              audioId={obituary.audioId}
               name={obituary.name}
               born={obituary.born}
               died={obituary.died}
@@ -22,8 +22,8 @@ function Table({ obituaries }) {
         <AbituaryCard
           className="card"
           // imageSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg/800px-Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg"
-          imageSrc="https://media.cnn.com/api/v1/images/stellar/prod/200126210422-27-kobe-bryant-gallery-restricted.jpg?q=w_2500,h_1488,x_0,y_0,c_fill/w_1376"
-          audioSrc="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+          imageId="ci2bgkm0om5ox99kekl7"
+          audioId="lbel0m2ouusgqtqya4l5"
           name="Aarsh"
           born="November 9, 2003"
           died="Present"
@@ -32,8 +32,8 @@ Ut delectus exercitationem ex reiciendis sapiente aut temporibus inventore."
         />
         <AbituaryCard
           className="card"
-          imageSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg/800px-Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg"
-          audioSrc="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+          imageId="ci2bgkm0om5ox99kekl7"
+          audioId="lbel0m2ouusgqtqya4l5"
           name="Aarsh"
           born="November 9, 2003"
           died="Present"

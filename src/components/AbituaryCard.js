@@ -2,10 +2,14 @@ import React from "react";
 import { useState } from "react";
 import "./AbituaryCard.css";
 
-function AbituaryCard({ imageSrc, audioSrc, name, born, died, bio }) {
+function AbituaryCard({ imageId, audioId, name, born, died, bio }) {
   const [cardOpen, setCardOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
-  let audio = new Audio(audioSrc);
+  const CLOUDNAME = "duoghyw7n";
+
+  let audio = new Audio(
+    `https://res.cloudinary.com/${CLOUDNAME}/video/upload/${audioId}`
+  );
 
   const handlePlay = () => {
     if (!isPlaying) {
@@ -25,7 +29,11 @@ function AbituaryCard({ imageSrc, audioSrc, name, born, died, bio }) {
   return (
     <div className="card-wrapper">
       <div className="card" onClick={toggleCard}>
-        <img className="card-image" src={imageSrc} alt={name + " image"} />
+        <img
+          className="card-image"
+          src={`https://res.cloudinary.com/${CLOUDNAME}/image/upload/${imageId}`}
+          alt={name + " image"}
+        />
         <p className="card-name">{name}</p>
         <p className="date">
           {born} - {died}

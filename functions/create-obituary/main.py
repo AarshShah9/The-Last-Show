@@ -2,6 +2,7 @@
 import requests
 import json
 import boto3
+import base64
 
 
 def create_obituary_handler(event, context):
@@ -31,9 +32,10 @@ def create_obituary_handler(event, context):
         died_year = obituary_data['died']
         id = obituary_data['id']
 
-        # TODO not sure if this is the right way to get the image file and set it up for cloudinary
-        # image_file = obituary_data['file']
-# # _____________________________________________________________________________________________________
+        # TODO WILL IF THE IMAGE UPLOAD ISNT WORKING THEN THIS IS LIKELY THE PROBLEM
+        image_file_base64 = obituary_data['file']
+        image_file = base64.decodebytes(bytes(image_file_base64, 'utf-8'))
+# _____________________________________________________________________________________________________
         # Code to call OpenAI API
         openai_headers = {
             'Content-Type': 'application/json',
