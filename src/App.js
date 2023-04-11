@@ -26,9 +26,10 @@ function App() {
       });
   };
 
-  // useEffect(() => {
-  //   getObituaries();
-  // }, []);
+  //gets obituaries on page load
+  useEffect(() => {
+    getObituaries();
+  }, []);
 
   const addObituary = (obituary) => {
     const formData = new FormData();
