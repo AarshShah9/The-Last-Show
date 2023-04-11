@@ -8,14 +8,16 @@ function AbituaryCard({ imageSrc, audioSrc, name, born, died, bio }) {
   let audio = new Audio(audioSrc);
 
   const handlePlay = () => {
-    if (isPlaying) {
-      audio.pause();
-    } else {
+    if (!isPlaying) {
       audio.play();
+      setIsPlaying(true);
+      console.log("Started playing");
+    } else {
+      audio.pause();
+      setIsPlaying(false);
+      console.log("Pause");
     }
-    setIsPlaying(!isPlaying);
   };
-
   const toggleCard = () => {
     setCardOpen(!cardOpen);
   };
@@ -36,9 +38,13 @@ function AbituaryCard({ imageSrc, audioSrc, name, born, died, bio }) {
             <source src={audioSrc} type="audio/mpeg" />
           </audio> */}
           <div className="audio-button-wrapper">
-            <button onClick={handlePlay} className="audio-button">
-              <img />
-            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handlePlay();
+              }}
+              className="audio-button"
+            ></button>
           </div>
         </div>
       </div>

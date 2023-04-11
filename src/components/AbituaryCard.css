@@ -11,6 +11,7 @@
   padding: 0;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   filter: grayscale(90%);
+  color: rgb(122, 121, 122);
 }
 
 .card-wrapper {
@@ -28,6 +29,7 @@
 .card:hover {
   filter: grayscale(60%);
   cursor: pointer;
+  color: rgb(36, 36, 36);
 }
 
 .card-image {
@@ -56,7 +58,7 @@
 }
 
 .card-open {
-  transition: all 0.5s ease-in-out;
+  /* transition: all 0.5s ease-in-out; */
   display: contents;
 }
 
