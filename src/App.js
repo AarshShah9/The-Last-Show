@@ -45,22 +45,34 @@ function App() {
   }, []);
 
   const addObituary = (obituary) => {
-    const formData = new FormData();
-    formData.append("id", obituary.id);
-    formData.append("file", obituary.file);
-    formData.append("name", obituary.name);
-    formData.append("born", obituary.born);
-    formData.append("died", obituary.died);
+    // const formData = new FormData();
+    // formData.append("id", obituary.id);
+    // formData.append("file", obituary.file);
+    // formData.append("name", obituary.name);
+    // formData.append("born", obituary.born);
+    // formData.append("died", obituary.died);
+    const data = {
+      id: obituary.id,
+      file: obituary.file,
+      name: obituary.name,
+      born: obituary.born,
+      died: obituary.died,
+    }
 
     fetch(CREATE_OBITUARY_URL, {
       method: "POST",
-      body: formData,
+      body: JSON.stringify(data),
     })
       .then((response) => {
+        console.log(response)
         if (response.ok) {
           getObituaries();
           toggleObituaryOverlay();
         }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
       })
       .catch((error) => {
         console.log(error);
