@@ -99,6 +99,7 @@ function Overlay({ addObituary, toggleObituaryOverlay }) {
               : "Please Wait. It's not like they're gonna be late for something..."
           }
           className={submitted ? "submitted-form form-submit" : "form-submit"}
+          disabled={submitted}
         />
       </div>
     </form>

@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import "./AbituaryCard.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 
 function AbituaryCard({ imageId, audioId, name, born, died, bio }) {
   const [cardOpen, setCardOpen] = useState(false);
@@ -52,7 +54,12 @@ function AbituaryCard({ imageId, audioId, name, born, died, bio }) {
                 handlePlay();
               }}
               className="audio-button"
-            ></button>
+            >
+              <FontAwesomeIcon
+                icon={!isPlaying ? faPlay : faPause}
+                className="font-awesome-icon"
+              />
+            </button>
           </div>
         </div>
       </div>
