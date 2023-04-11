@@ -63,3 +63,8 @@ terraform.rc
 test.py
 download.jpg
 Kalimba.mp3
+
+# packaging stuff
+*.zip
+*.tar.gz
+package
