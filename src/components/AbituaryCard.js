@@ -34,9 +34,17 @@ function AbituaryCard({ imageId, audioId, name, born, died, bio }) {
 
   useEffect(() => {
     if (playing) {
-      setPlaying(!playing)
+      setPlaying(!playing);
+      audio.load();
     }
   }, [cardOpen]);
+
+  useEffect(() => {
+    audio.addEventListener('ended', () => setPlaying(false));
+    return () => {
+      audio.removeEventListener('ended', () => setPlaying(false));
+    };
+  }, []);
 
   return (
     <div className="card-wrapper">
