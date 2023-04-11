@@ -14,13 +14,18 @@ function Overlay({ addObituary, toggleObituaryOverlay }) {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
-    addObituary({
-      id: uuidv4(),
-      name: name,
-      file: file,
-      born: born,
-      died: died,
-    });
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      const result = reader.result.substring(reader.result.indexOf(",") + 1);
+      addObituary({
+        id: uuidv4(),
+        name: name,
+        file: result,
+        born: born,
+        died: died,
+      });
+    };
   };
 
   return (
