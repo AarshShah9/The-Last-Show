@@ -42,6 +42,14 @@
 .bio {
   font-family: "Satisfy", cursive;
   text-align: center;
-  padding: 0 10px;
+  padding: 20px;
   font-size: 1.2rem;
+}
+.card-closed {
+  display: none;
+}
+
+.card-open {
+  transition: all 0.5s ease-in-out;
+  display: contents;
 }

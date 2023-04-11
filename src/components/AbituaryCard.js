@@ -18,12 +18,12 @@ function AbituaryCard({ imageSrc, audioSrc, name, born, died, bio }) {
           {born} - {died}
         </p>
         {/* update below to have transition */}
-        <p className="bio">{cardOpen ? bio : null}</p>
-        {cardOpen ? (
+        <div className={cardOpen ? "card-open" : "card-closed"}>
+          <p className="bio">{bio}</p>
           <audio controls>
             <source src={audioSrc} type="audio/mpeg" />
           </audio>
-        ) : null}
+        </div>
       </div>
     </div>
   );

@@ -39,10 +39,12 @@ function App() {
       .then((response) => {
         if (response.ok) {
           getObituaries();
+          toggleObituaryOverlay();
         }
       })
       .catch((error) => {
         console.log(error);
+        toggleObituaryOverlay();
       });
   };
 

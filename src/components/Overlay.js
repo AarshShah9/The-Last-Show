@@ -9,10 +9,11 @@ function Overlay({ addObituary, toggleObituaryOverlay }) {
   const [file, setFile] = useState("");
   const [born, setBorn] = useState("");
   const [died, setDied] = useState("");
+  const [submitted, setSubmitted] = useState(false);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-
+    setSubmitted(true);
     addObituary({
       id: uuidv4(),
       name: name,
@@ -23,13 +24,17 @@ function Overlay({ addObituary, toggleObituaryOverlay }) {
   };
 
   return (
-    <form className="form" onClick={handleFormSubmit}>
+    <form className="form" onSubmit={handleFormSubmit}>
       <p className="x-out" onClick={toggleObituaryOverlay}>
         &#10006;
       </p>
       <div className="main-form-container">
         <h2>Create a New Obituary</h2>
-        <img src="ripicon.png" alt="flower" className="flower-image"></img>
+        <img
+          src="ripicon-nobg.png"
+          alt="flower"
+          className="flower-image"
+        ></img>
         <div>
           <label htmlFor="file-upload" className="file-upload-label">
             Select an image for the deceased&nbsp;
@@ -43,6 +48,7 @@ function Overlay({ addObituary, toggleObituaryOverlay }) {
             onChange={(e) => {
               setFile(e.target.files[0]);
             }}
+            required
           />
         </div>
 
@@ -65,6 +71,7 @@ function Overlay({ addObituary, toggleObituaryOverlay }) {
             onChange={(e) => {
               setBorn(e.target.value);
             }}
+            required
           />
           <label htmlFor="died-date-input">
             <i>Died:</i>
@@ -76,9 +83,18 @@ function Overlay({ addObituary, toggleObituaryOverlay }) {
             onChange={(e) => {
               setDied(e.target.value);
             }}
+            required
           />
         </div>
-        <input type="submit" value="Write Obituary" className="form-submit" />
+        <input
+          type="submit"
+          value={
+            !submitted
+              ? "Write Obituary"
+              : "Please Wait. It's not like they're gonna be late for something..."
+          }
+          className={submitted ? "submitted-form form-submit" : "form-submit"}
+        />
       </div>
     </form>
   );
