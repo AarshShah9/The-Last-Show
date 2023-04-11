@@ -6,8 +6,9 @@ import { faPlay, faPause } from "@fortawesome/free-solid-svg-icons";
 
 function AbituaryCard({ imageId, audioId, name, born, died, bio }) {
   const [cardOpen, setCardOpen] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
   const CLOUDNAME = "duoghyw7n";
+  const [audio] = useState(new Audio(`https://res.cloudinary.com/${CLOUDNAME}/video/upload/${audioId}`));
+  const [playing, setPlaying] = useState(false);
 
   const wordsArray = name.split(" ");
   // const firstName = wordsArray[0][0].toUpperCase() + wordsArray[0].slice(1);
@@ -19,31 +20,23 @@ function AbituaryCard({ imageId, audioId, name, born, died, bio }) {
     return new Date(date).toLocaleDateString("en-US", options);
   };
 
-  let audio = new Audio(
-    `https://res.cloudinary.com/${CLOUDNAME}/video/upload/${audioId}`
+  useEffect(() => {
+      playing ? audio.play() : audio.pause();
+    },
+    [playing]
   );
 
-  useEffect(() => {
-    if (isPlaying) {
-      audio.pause();
-      setIsPlaying(false);
-    }
-  }, [cardOpen]);
+  const togglePlay = () => setPlaying(!playing);
 
-  const handlePlay = () => {
-    if (!isPlaying) {
-      audio.play();
-      setIsPlaying(true);
-      console.log("Started playing");
-    } else {
-      audio.pause();
-      setIsPlaying(false);
-      console.log("Pause");
-    }
-  };
   const toggleCard = () => {
     setCardOpen(!cardOpen);
   };
+
+  useEffect(() => {
+    if (playing) {
+      setPlaying(!playing)
+    }
+  }, [cardOpen]);
 
   return (
     <div className="card-wrapper">
@@ -69,12 +62,12 @@ function AbituaryCard({ imageId, audioId, name, born, died, bio }) {
             <button
               onClick={(e) => {
                 e.stopPropagation();
-                handlePlay();
+                togglePlay();
               }}
               className="audio-button"
             >
               <FontAwesomeIcon
-                icon={!isPlaying ? faPlay : faPause}
+                icon={!playing ? faPlay : faPause}
                 className="font-awesome-icon"
               />
             </button>
