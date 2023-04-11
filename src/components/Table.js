@@ -3,6 +3,8 @@ import AbituaryCard from "../components/AbituaryCard";
 import "./Table.css";
 
 function Table({ obituaries }) {
+  const CLOUDNAME = "duoghyw7n";
+
   return (
     <div className="table-wrapper">
       <div className="table">
