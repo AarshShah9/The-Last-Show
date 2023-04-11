@@ -25,7 +25,7 @@ def create_obituary_handler(event, context):
             'statusCode': 401,
             'body': json.dumps(f'Error retrieving secrets: {str(e)}')
         }
-    try:        
+    try:
         obituary_data = json.loads(event['body'])
         name = obituary_data['name']
         born_year = obituary_data['born']
@@ -49,8 +49,9 @@ def create_obituary_handler(event, context):
         }
         obituary_bio_response = requests.post(
             'https://api.openai.com/v1/chat/completions', headers=openai_headers, data=json.dumps(openai_payload))
-        
-        obituary_body = obituary_bio_response.json().get("choices")[0].get("message").get("content")
+
+        obituary_body = obituary_bio_response.json().get(
+            "choices")[0].get("message").get("content")
 
 # # _____________________________________________________________________________________________________
         # Code to call amazon polly API
@@ -105,7 +106,8 @@ def create_obituary_handler(event, context):
         # Code to save obituary to DynamoDB
         dynamodb_resource = boto3.resource('dynamodb')
         table = dynamodb_resource.Table("thelastshow-30158991")
-        instance_to_save = {'id': id, 'name': name, 'born': born_year, 'died': died_year, 'obituary': obituary_body, 'audio': cloudinary_audio_id, 'image': cloudinary_img_id}
+        instance_to_save = {'id': id, 'name': name, 'born': born_year, 'died': died_year,
+                            'obituary': obituary_body, 'audio': cloudinary_audio_id, 'image': cloudinary_img_id}
         # should store obituary bio response here
         dynamodb_response = table.put_item(
             Item=instance_to_save
@@ -124,4 +126,3 @@ def create_obituary_handler(event, context):
             'body': json.dumps(f'Error: {str(e)}'),
             'event': event
         }
-
