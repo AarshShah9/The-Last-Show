@@ -183,7 +183,7 @@ resource "aws_lambda_function" "create-obituary-30150079" {
   role          = aws_iam_role.lambda.arn
   function_name = local.create_obituary_function_name
   handler       = local.create_obituary_handler_name
-  timeout       = 30
+  timeout       = 45
 
   runtime = "python3.9"
 }
