@@ -5,8 +5,10 @@ import Table from "./components/Table";
 import "./App.css";
 
 function App() {
-  let CREATE_OBITUARY_URL = "https://za57fl2wiqv7mz725dacgumdaa0ntuvd.lambda-url.ca-central-1.on.aws/";
-  let GET_OBITUARIES_URL = "https://bwgfqjwhsn2gw7czfqfkxfzx2u0hfgoj.lambda-url.ca-central-1.on.aws/";
+  let CREATE_OBITUARY_URL =
+    "https://za57fl2wiqv7mz725dacgumdaa0ntuvd.lambda-url.ca-central-1.on.aws/";
+  let GET_OBITUARIES_URL =
+    "https://bwgfqjwhsn2gw7czfqfkxfzx2u0hfgoj.lambda-url.ca-central-1.on.aws/";
 
   const [overlay, setOverlay] = useState(false);
   const [obituaries, setObituaries] = useState([]);
@@ -31,7 +33,7 @@ function App() {
             bio: data[i].obituary,
             audioID: data[i].audio,
             imageID: data[i].image,
-          }
+          };
           obitArr.push(obituary);
         }
         setObituaries(obitArr);
@@ -41,7 +43,6 @@ function App() {
         console.log(error);
       });
   };
-
 
   //gets obituaries on page load
   useEffect(() => {
@@ -61,14 +62,14 @@ function App() {
       name: obituary.name,
       born: obituary.born,
       died: obituary.died,
-    }
+    };
 
     fetch(CREATE_OBITUARY_URL, {
       method: "POST",
       body: JSON.stringify(data),
     })
       .then((response) => {
-        console.log(response)
+        console.log(response);
         if (response.ok) {
           getObituaries();
           toggleObituaryOverlay();

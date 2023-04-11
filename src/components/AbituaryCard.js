@@ -8,6 +8,15 @@ function AbituaryCard({ imageId, audioId, name, born, died, bio }) {
   const [cardOpen, setCardOpen] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const CLOUDNAME = "duoghyw7n";
+  const words = name;
+  const wordsArray = words.split(" ");
+  const firstName = wordsArray[0][0].toUpperCase() + wordsArray[0].slice(1);
+  const lastName = wordsArray[1][0].toUpperCase() + wordsArray[1].slice(1);
+
+  const convertDate = (date) => {
+    const options = { year: "numeric", month: "long", day: "numeric" };
+    return new Date(date).toLocaleDateString("en-US", options);
+  };
 
   let audio = new Audio(
     `https://res.cloudinary.com/${CLOUDNAME}/video/upload/${audioId}`
@@ -36,9 +45,9 @@ function AbituaryCard({ imageId, audioId, name, born, died, bio }) {
           src={`https://res.cloudinary.com/${CLOUDNAME}/image/upload/${imageId}`}
           alt={name + " image"}
         />
-        <p className="card-name">{name}</p>
+        <p className="card-name">{firstName + " " + lastName}</p>
         <p className="date">
-          {born} - {died}
+          {convertDate(born)} - {convertDate(died)}
         </p>
 
         {/* update below to have transition */}
