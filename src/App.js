@@ -5,8 +5,8 @@ import Table from "./components/Table";
 import "./App.css";
 
 function App() {
-  let CREATE_OBITUARY_URL = "";
-  let GET_OBITUARIES_URL = "";
+  let CREATE_OBITUARY_URL = "https://za57fl2wiqv7mz725dacgumdaa0ntuvd.lambda-url.ca-central-1.on.aws/";
+  let GET_OBITUARIES_URL = "https://bwgfqjwhsn2gw7czfqfkxfzx2u0hfgoj.lambda-url.ca-central-1.on.aws/";
 
   const [overlay, setOverlay] = useState(false);
   const [obituaries, setObituaries] = useState([]);
@@ -17,14 +17,27 @@ function App() {
 
   const getObituaries = () => {
     fetch(GET_OBITUARIES_URL)
-      .then((response) => response.json())
-      .then((data) => {
-        setObituaries(data);
+      .then((res) => {
+        console.log(res)
+        let obitArr = [];
+        for (let i = 0; i < res.length; i++) {
+          const obituary = {
+            id: res[i].id,
+            name: res[i].name,
+            born: res[i].born,
+            died: res[i].died,
+            audioID: res[i].audio,
+            imageID: res[i].image,
+          }
+          obitArr.push(obituary);
+        }
+        setObituaries(obitArr);
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
 
   //gets obituaries on page load
   useEffect(() => {
