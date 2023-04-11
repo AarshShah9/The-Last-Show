@@ -86,3 +86,15 @@ h2 {
   text-decoration: underline;
   cursor: pointer;
 }
+
+.died-date-input {
+  border: none;
+}
+
+.born-date-input {
+  border: none;
+}
+
+.submitted-form {
+  background-color: #818181;
+}

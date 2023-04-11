@@ -10,19 +10,27 @@
   border-radius: 7px;
   padding: 0;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  filter: grayscale(90%);
+  color: rgb(122, 121, 122);
 }
 
 .card-wrapper {
   padding: 20px;
+  filter: grayscale(90%);
+}
+
+/* .card-wrapper:not(:hover) {
+} */
+
+.card-wrapper:hover {
+  filter: grayscale(60%);
 }
 
 .card:hover {
-  -webkit-filter: brightness(70%);
+  filter: grayscale(60%);
   cursor: pointer;
+  color: rgb(36, 36, 36);
 }
-/* .card:click {
-  -webkit-transition: ;
-} */
 
 .card-image {
   max-width: 300px;
@@ -42,6 +50,38 @@
 .bio {
   font-family: "Satisfy", cursive;
   text-align: center;
-  padding: 0 10px;
+  padding: 20px;
   font-size: 1.2rem;
 }
+.card-closed {
+  display: none;
+}
+
+.card-open {
+  /* transition: all 0.5s ease-in-out; */
+  display: contents;
+}
+
+.audio-button {
+  background-color: #fff;
+  border-radius: 50%;
+  border: 1px solid #d7d7d7;
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  transition: background-color 0.3s;
+  padding: 10px;
+}
+
+.audio-button:hover {
+  background-color: #878686;
+}
+
+.audio-button-wrapper {
+  padding: 10px;
+}
+
+/* .audio-button img {
+  height: 20px;
+  width: 20px;
+} */
