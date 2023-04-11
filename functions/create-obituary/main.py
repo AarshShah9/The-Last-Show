@@ -84,7 +84,6 @@ def create_obituary_handler(event, context):
             raise Exception(
                 f"Audio upload failed: {cloudinary_audio_response.json()}")
 
-        # TODO WILL HERE IS THE ID OF THE AUDIO
         cloudinary_audio_id = cloudinary_audio_response.json().get("public_id")
 
 # _____________________________________________________ ________________________________________________
