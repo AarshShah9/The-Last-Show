@@ -16,8 +16,14 @@ function App() {
   };
 
   const getObituaries = () => {
-    // fetch()
-    // setObituaries()
+    fetch(GET_OBITUARIES_URL)
+      .then((response) => response.json())
+      .then((data) => {
+        setObituaries(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   // useEffect(() => {
