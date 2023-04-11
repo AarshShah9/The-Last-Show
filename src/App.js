@@ -5,8 +5,8 @@ import Table from "./components/Table";
 import "./App.css";
 
 function App() {
-  let CREATE_OBITUARY_URL = "";
-  let GET_OBITUARIES_URL = "";
+  const CREATE_OBITUARY_URL = "";
+  const GET_OBITUARIES_URL = "";
 
   const [overlay, setOverlay] = useState(false);
   const [obituaries, setObituaries] = useState([]);
