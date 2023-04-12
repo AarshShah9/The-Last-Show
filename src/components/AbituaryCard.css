@@ -8,7 +8,6 @@
   max-width: 400px;
   min-width: 0px;
   display: flex;
-  height: fit-content;
   flex-grow: 1;
   flex-shrink: 1;
   flex-direction: column;
@@ -53,13 +52,16 @@
   padding: 20px;
   font-size: 1.2rem;
 }
-.card-closed {
-  display: none;
+.body {
+  transition: opacity 1s ease-out;
+  opacity: 0;
+  height: 0px;
+  overflow: hidden;
 }
 
-.card-open {
-  /* transition: all 0.5s ease-in-out; */
-  display: contents;
+.body.active {
+  opacity: 1;
+  height: fit-content;
 }
 
 .audio-button {
@@ -79,6 +81,8 @@
 
 .audio-button-wrapper {
   padding: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .font-awesome-icon {
