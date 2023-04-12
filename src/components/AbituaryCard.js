@@ -51,7 +51,7 @@ function AbituaryCard({ imageId, audioId, name, born, died, bio }) {
       <div className="card" onClick={toggleCard}>
         <img
           className="card-image"
-          src={`https://res.cloudinary.com/${CLOUDNAME}/image/upload/${imageId}`}
+          src={`https://res.cloudinary.com/${CLOUDNAME}/image/upload/e_art:zorro/${imageId}`}
           alt={name + " image"}
         />
         {/* <p className="card-name">{firstName + " " + lastName}</p> */}
