@@ -2,9 +2,6 @@
 import boto3
 import json
 
-import requests
-
-
 def get_obituaries_handler(event, context):
     try:        
         dynamodb = boto3.resource("dynamodb")
@@ -17,31 +14,6 @@ def get_obituaries_handler(event, context):
             response = table.scan(
                 ExclusiveStartKey=response['LastEvaluatedKey'])
             data.extend(response['Items'])
-
-
-        # img_ids = []
-        # audio_ids = []
-
-        # for item in data:
-        #     img_ids.append(item['image'])
-        #     audio_ids.append(item['audio'])
-
-        # imgs = []
-        # audio_files = []
-
-        # # Cloudinary API Request to get all the images
-        # for id in img_ids:
-        #     img_response = requests.get(
-        #         f"https://res.cloudinary.com/{CLOUDINARY_NAME}/image/upload/{id}")
-        #     imgs.append(img_response.content)
-
-        # # Cloudnary API Request to get all the audio files
-        # for id in audio_ids:
-        #     audio_response = requests.get(
-        #         f"https://res.cloudinary.com/{CLOUDINARY_NAME}/video/upload/{id}")
-        #     audio_files.append(audio_response.content)
-
-        # ___________________________________________________________________
 
         return {
             'statusCode': 201,
