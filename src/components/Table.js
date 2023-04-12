@@ -1,11 +1,24 @@
 import React from "react";
 import AbituaryCard from "../components/AbituaryCard";
 import "./Table.css";
+import Masonry from 'react-masonry-css'
+
 
 function Table({ obituaries }) {
+
+  const breakpointColumnsObj = {
+    default: 4,
+    1150: 2,
+    700: 1
+  };
+  
   return (
     <div className="table-wrapper">
-      <div className="table">
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >
         {obituaries.map((obituary) => {
           return (
             <AbituaryCard
@@ -20,7 +33,7 @@ function Table({ obituaries }) {
             />
           );
         })}
-      </div>
+      </Masonry>
     </div>
   );
 }

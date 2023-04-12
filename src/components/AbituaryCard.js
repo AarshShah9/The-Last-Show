@@ -47,7 +47,6 @@ function AbituaryCard({ imageId, audioId, name, born, died, bio }) {
   }, []);
 
   return (
-    <div className="card-wrapper">
       <div className="card" onClick={toggleCard}>
         <img
           className="card-image"
@@ -82,7 +81,6 @@ function AbituaryCard({ imageId, audioId, name, born, died, bio }) {
           </div>
         </div>
       </div>
-    </div>
   );
 }
 
