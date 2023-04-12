@@ -1,17 +1,31 @@
 import React from "react";
 import AbituaryCard from "../components/AbituaryCard";
 import "./Table.css";
+import Masonry from 'react-masonry-css'
+
 
 function Table({ obituaries }) {
+
+  const breakpointColumnsObj = {
+    default: 4,
+    1150: 2,
+    700: 1
+  };
+  
   return (
     <div className="table-wrapper">
-      <div className="table">
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >
         {obituaries.map((obituary) => {
           return (
             <AbituaryCard
               className="card"
-              imageSrc={obituary.imageSrc}
-              audioSrc={obituary.audioSrc}
+              key={obituary.id}
+              imageId={obituary.imageID}
+              audioId={obituary.audioID}
               name={obituary.name}
               born={obituary.born}
               died={obituary.died}
@@ -19,30 +33,7 @@ function Table({ obituaries }) {
             />
           );
         })}
-        <AbituaryCard
-          className="card"
-          // imageSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg/800px-Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg"
-          imageSrc="https://media.cnn.com/api/v1/images/stellar/prod/200126210422-27-kobe-bryant-gallery-restricted.jpg?q=w_2500,h_1488,x_0,y_0,c_fill/w_1376"
-          audioSrc="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-          name="Aarsh"
-          born="November 9, 2003"
-          died="Present"
-          bio="Lorem ipsum dolor sit amet. Et galisum provident et voluptas nisi aut perferendis reprehenderit. 
-Ut delectus exercitationem ex reiciendis sapiente aut temporibus inventore. 
-Et perferendis assumenda ex reprehenderit rerum id voluptatem quisquam."
-        />
-        <AbituaryCard
-          className="card"
-          imageSrc="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg/800px-Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg"
-          audioSrc="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-          name="Aarsh"
-          born="November 9, 2003"
-          died="Present"
-          bio="Lorem ipsum dolor sit amet. Et galisum provident et voluptas nisi aut perferendis reprehenderit. 
-Ut delectus exercitationem ex reiciendis sapiente aut temporibus inventore. 
-Et perferendis assumenda ex reprehenderit rerum id voluptatem quisquam."
-        />
-      </div>
+      </Masonry>
     </div>
   );
 }

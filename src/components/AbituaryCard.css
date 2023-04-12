@@ -1,8 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
 
 .card {
-  max-width: 300px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 30px;
+  margin-right: 30px;
+  max-width: 400px;
+  min-width: 0px;
   display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -10,22 +17,22 @@
   border-radius: 7px;
   padding: 0;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-}
+  filter: grayscale(90%);
+  color: rgb(122, 121, 122);
+} 
 
-.card-wrapper {
-  padding: 20px;
+.card-wrapper:hover {
+  filter: grayscale(60%);
 }
 
 .card:hover {
-  -webkit-filter: brightness(70%);
+  filter: grayscale(60%);
   cursor: pointer;
+  color: rgb(36, 36, 36);
 }
-/* .card:click {
-  -webkit-transition: ;
-} */
 
 .card-image {
-  max-width: 300px;
+  width: 100%;
   border-radius: 7px 7px 0 0;
 }
 
@@ -42,6 +49,47 @@
 .bio {
   font-family: "Satisfy", cursive;
   text-align: center;
-  padding: 0 10px;
+  padding: 20px;
   font-size: 1.2rem;
+}
+.body {
+  transition: opacity 1s ease-out;
+  opacity: 0;
+  height: 0px;
+  overflow: hidden;
+}
+
+.body.active {
+  opacity: 1;
+  height: fit-content;
+}
+
+.audio-button {
+  background-color: #fff;
+  border-radius: 50%;
+  border: 1px solid #d7d7d7;
+  cursor: pointer;
+  height: 50px;
+  width: 50px;
+  transition: background-color 0.3s;
+  padding: 10px;
+}
+
+.audio-button:hover {
+  background-color: #535353;
+}
+
+.audio-button-wrapper {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.font-awesome-icon {
+  filter: grayscale(0%);
+  color: rgb(0, 0, 0);
+}
+
+.audio-button:hover .font-awesome-icon {
+  color: rgb(255, 255, 255);
 }

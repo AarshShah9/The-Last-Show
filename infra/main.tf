@@ -87,6 +87,59 @@ resource "aws_iam_role_policy_attachment" "dynamoaccess" {
   policy_arn = aws_iam_policy.dynamodb.arn
 }
 
+# policy to allow access to parameter store ssm
+resource "aws_iam_policy" "ssm" {
+  name = "obituary-ssm-policy"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+          "ssm:GetParametersByPath"
+        ],
+        "Resource": "arn:aws:ssm:*:*:parameter/thelastshow"
+    }
+  ]
+}
+EOF
+}
+
+#attatch the policy
+resource "aws_iam_role_policy_attachment" "ssmaccess" {
+  role       = aws_iam_role.lambda.name
+  policy_arn = aws_iam_policy.ssm.arn
+}
+
+# policy to allow access to polly
+resource "aws_iam_policy" "polly" {
+  name = "obituary-polly-policy"
+
+  policy = <<EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+          "polly:SynthesizeSpeech"
+        ],
+        "Resource": "*"
+    }
+  ]
+}
+EOF
+}
+
+#attatch the policy
+resource "aws_iam_role_policy_attachment" "pollyaccess" {
+  role       = aws_iam_role.lambda.name
+  policy_arn = aws_iam_policy.polly.arn
+}
+
+
 # read the docs: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/dynamodb_table
 
 resource "aws_dynamodb_table" "thelastshow-30158991" {
@@ -130,6 +183,7 @@ resource "aws_lambda_function" "create-obituary-30150079" {
   role          = aws_iam_role.lambda.arn
   function_name = local.create_obituary_function_name
   handler       = local.create_obituary_handler_name
+  timeout       = 45
 
   runtime = "python3.9"
 }

@@ -49,7 +49,7 @@ h2 {
   height: 35px;
   width: 500px;
   border: #afafaf solid 1px;
-  border-radius: 3px;
+  border-radius: 5px;
   margin-bottom: 15px;
   margin-top: 15px;
 }
@@ -85,4 +85,16 @@ h2 {
 .file-upload-label:hover {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.died-date-input {
+  border: none;
+}
+
+.born-date-input {
+  border: none;
+}
+
+.submitted-form {
+  background-color: #818181;
 }
