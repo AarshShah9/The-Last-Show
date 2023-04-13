@@ -11,9 +11,10 @@ function AbituaryCard({ imageId, audioId, name, born, died, bio }) {
   const [playing, setPlaying] = useState(false);
 
   const wordsArray = name.split(" ");
-  // const firstName = wordsArray[0][0].toUpperCase() + wordsArray[0].slice(1);
-  // const lastName = wordsArray[1][0].toUpperCase() + wordsArray[1].slice(1);
-  // const firstName = "";
+  for (let i = 0; i < wordsArray.length; i++) {
+    wordsArray[i] = wordsArray[i][0].toUpperCase() + wordsArray[i].slice(1);
+  }
+  const capName = wordsArray.join(" ");
 
   const convertDate = (date) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
@@ -54,7 +55,7 @@ function AbituaryCard({ imageId, audioId, name, born, died, bio }) {
           alt={name + " image"}
         />
         {/* <p className="card-name">{firstName + " " + lastName}</p> */}
-        <p className="card-name">{name}</p>
+        <p className="card-name">{capName}</p>
         <p className="date">
           {convertDate(born)} - {convertDate(died)}
         </p>
