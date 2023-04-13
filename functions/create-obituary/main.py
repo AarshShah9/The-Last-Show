@@ -44,7 +44,7 @@ def create_obituary_handler(event, context):
         openai_payload = {
             'model': 'gpt-3.5-turbo',
             'messages': [{'role': 'user', 'content': f"write an obituary about a fictional character named {name} who was born on {born_year} and died on {died_year}."}],
-            'max_tokens': 600,
+            'max_tokens': 400,
             'temperature': 0.7
         }
         obituary_bio_response = requests.post(
