@@ -17,3 +17,6 @@ A full stack application with React and AWS that generates obituaries for people
   <img src="https://res.cloudinary.com/mkf/image/upload/v1680411648/last-show_dvjjez.svg" alt="the-last-show-architecture" width="800"/>
 </p>
 <br/>
+
+![TheLastShowImage](https://github.com/user-attachments/assets/8c2e9c73-a599-4df4-b58c-c109177dfb40)
+
